@@ -8,17 +8,13 @@ def pad(literal):
     return '\n'.join(' ' + line.ljust(width) + ' ' for line in lines)
 
 def randompad(numrows,numcols):
-    randmatrix = np.random.randint(0,2,(numrows,numcols))
     strmatr    = ""
     for row in range(numrows):
         for col in range(numcols):
-            if randmatrix[row,col] == 0:
-                strmatr = strmatr + ' '
-            else:
-                strmatr = strmatr + '#'
+            strmatr = strmatr + np.random.choice(['#', ' '])
         strmatr = strmatr + '\n'
     return strmatr
-    
+
 
 RANDOMPATTERN = randompad(3,10)
 
