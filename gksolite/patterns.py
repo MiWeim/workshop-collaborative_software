@@ -1,3 +1,5 @@
+import numpy as np
+
 def pad(literal):
     if not literal:
         return "  \n  "
@@ -5,6 +7,20 @@ def pad(literal):
     width = max(len(line) for line in lines)
     return '\n'.join(' ' + line.ljust(width) + ' ' for line in lines)
 
+def randompad(numrows,numcols):
+    randmatrix = np.random.randint(0,2,(numrows,numcols))
+    strmatr    = ""
+    for row in range(numrows):
+        for col in range(numcols):
+            if randmatrix[row,col] == 0:
+                strmatr = strmatr + ' '
+            else:
+                strmatr = strmatr + '#'
+        strmatr = strmatr + '\n'
+    return strmatr
+    
+
+RANDOMPATTERN = randompad(3,10)
 
 BLOCK = pad("""\
 ##
@@ -81,9 +97,10 @@ BASELINE = pad("""\
 ######## #####   ###      ####### #####
 """)
 
+
 PATTERNS = [
     'BLOCK', 'BLINKER', 'BLINKER3', 'PULSAR', 'PENTADECATHLON', 'PINWHEEL', 'GLIDER', 'DIEHARD', 'GLIDER_GUN',
-    'PENTOMINO'
+    'PENTOMINO', 'RANDOMPATTERN'
 ]
 
 __all__ = PATTERNS[:]
